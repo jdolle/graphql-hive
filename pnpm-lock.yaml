@@ -896,9 +896,6 @@ importers:
         specifier: 5.6.0
         version: 5.6.0(graphql@16.9.0)
     devDependencies:
-      esbuild:
-        specifier: 0.23.0
-        version: 0.23.0
       wrangler:
         specifier: 3.61.0
         version: 3.61.0(@cloudflare/workers-types@4.20240712.0)
@@ -9897,9 +9894,6 @@ packages:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
 
-  defu@6.1.2:
-    resolution: {integrity: sha512-+uO4+qr7msjNNWKYPHqN/3+Dx3NFkmIzayk2L1MyZQlvgZb/J1A0fo410dpKrN2SnqFjt8n4JL8fDJE0wIgjFQ==}
-
   defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
@@ -13358,9 +13352,6 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
-
-  node-fetch-native@1.0.2:
-    resolution: {integrity: sha512-KIkvH1jl6b3O7es/0ShyCgWLcfXxlBrLBbP3rOr23WArC66IMcU4DeZEeYEOwnopYhawLTn7/y+YtmASe8DFVQ==}
 
   node-fetch-native@1.6.4:
     resolution: {integrity: sha512-IhOigYzAKHd244OC0JIMIUrjzctirCmPkaIfhDeGcEETWof5zKYUW7e7MYvChGWh/4CJeXEgsRyGzuF334rOOQ==}
@@ -27528,8 +27519,6 @@ snapshots:
       has-property-descriptors: 1.0.1
       object-keys: 1.1.1
 
-  defu@6.1.2: {}
-
   defu@6.1.4: {}
 
   delaunator@5.0.0:
@@ -29040,10 +29029,10 @@ snapshots:
   giget@1.1.2:
     dependencies:
       colorette: 2.0.20
-      defu: 6.1.2
+      defu: 6.1.4
       https-proxy-agent: 5.0.1
       mri: 1.2.0
-      node-fetch-native: 1.0.2
+      node-fetch-native: 1.6.4
       pathe: 1.1.2
       tar: 6.1.13
     transitivePeerDependencies:
@@ -32243,8 +32232,6 @@ snapshots:
       minimatch: 3.1.2
 
   node-domexception@1.0.0: {}
-
-  node-fetch-native@1.0.2: {}
 
   node-fetch-native@1.6.4: {}
 
