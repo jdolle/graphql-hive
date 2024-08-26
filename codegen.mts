@@ -110,6 +110,9 @@ const config: CodegenConfig = {
             '../modules/schema/module.graphql.mappers#SchemaVersionConnectionMapper',
           SchemaVersion: '../modules/schema/module.graphql.mappers#SchemaVersionMapper',
           Schema: '../modules/schema/module.graphql.mappers#SchemaMapper',
+          AuditLogs: '../modules/audit-logs/module.graphql.mappers#AuditLogsMapper',
+          AuditLogsConnection:
+            '../modules/audit-logs/module.graphql.mappers#AuditLogsConnectionMapper',
           SingleSchema: '../modules/schema/module.graphql.mappers#SingleSchemaMapper',
           CompositeSchema: '../modules/schema/module.graphql.mappers#CompositeSchemaMapper',
           Organization: '../modules/organization/module.graphql.mappers#OrganizationMapper',

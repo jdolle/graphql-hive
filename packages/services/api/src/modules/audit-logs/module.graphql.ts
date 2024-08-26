@@ -64,7 +64,6 @@ input AuditLogFilter {
 type AuditLogFileExport {
   id: ID!
   url: String!
-  filters: AuditLogFilter!
   validUntil: Date!
   createdAt: Date!
 }
@@ -86,7 +85,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  exportAuditLogsToFile(filter: AuditLogFilter!): AuditLogFileExport!
+  exportAuditLogsToFile(filter: AuditLogFilter): AuditLogFileExport!
 }
 
 type ModifyAuditLogError implements Error {
