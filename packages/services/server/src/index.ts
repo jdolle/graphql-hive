@@ -376,6 +376,7 @@ export async function main() {
       organizationOIDC: env.organizationOIDC,
       supportConfig: env.zendeskSupport,
       pubSub,
+      appDeploymentsEnabled: env.featureFlags.appDeploymentsEnabled,
     });
 
     const graphqlPath = '/graphql';

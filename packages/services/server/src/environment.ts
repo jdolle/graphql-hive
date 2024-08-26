@@ -43,6 +43,9 @@ const EnvironmentModel = zod.object({
   AUTH_REQUIRE_EMAIL_VERIFICATION: emptyString(
     zod.union([zod.literal('1'), zod.literal('0')]).optional(),
   ),
+  FEATURE_FLAGS_APP_DEPLOYMENTS_ENABLED: emptyString(
+    zod.union([zod.literal('1'), zod.literal('0')]).optional(),
+  ),
 });
 
 const SentryModel = zod.union([
@@ -466,4 +469,8 @@ export const env = {
           subdomain: zendeskSupport.ZENDESK_SUBDOMAIN,
         }
       : null,
+  featureFlags: {
+    /** Whether app deployments should be enabled by default for everyone. */
+    appDeploymentsEnabled: base.FEATURE_FLAGS_APP_DEPLOYMENTS_ENABLED === '1',
+  },
 } as const;
