@@ -67,6 +67,7 @@ import {
   USAGE_ESTIMATION_SERVICE_CONFIG,
   UsageEstimationServiceConfig,
 } from './modules/usage-estimation/providers/tokens';
+import { auditLogsModule } from './modules/audit-logs';
 
 const modules = [
   sharedModule,
@@ -81,6 +82,7 @@ const modules = [
   integrationsModule,
   alertsModule,
   feedbackModule,
+  auditLogsModule,
   cdnModule,
   adminModule,
   usageEstimationModule,

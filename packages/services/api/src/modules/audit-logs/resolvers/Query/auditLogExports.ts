@@ -7,4 +7,5 @@ export const auditLogExports: NonNullable<QueryResolvers['auditLogExports']> = a
   _ctx,
 ) => {
   /* Implement Query.auditLogExports resolver logic here */
+  console.log('Resolver auditLogExports not implemented');
 };

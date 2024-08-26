@@ -51,16 +51,6 @@ type AuditLogConnection {
   pageInfo: PageInfo!
 }
 
-input AuditLogFilter {
-  startDate: Date
-  endDate: Date
-  userId: String
-  userEmail: String
-  projectId: String
-  targetId: String
-  eventAction: AuditLogEventAction
-}
-
 type AuditLogFileExport {
   id: ID!
   url: String!
@@ -78,6 +68,15 @@ type ExportResultConnection {
   pageInfo: PageInfo!
 }
 
+input AuditLogFilter {
+  startDate: Date
+  endDate: Date
+  userId: String
+  userEmail: String
+  projectId: String
+  targetId: String
+  eventAction: AuditLogEventAction
+}
 
 extend type Query {
   auditLogs(filter: AuditLogFilter, first: Int = 100, after: String = null): AuditLogConnection!
@@ -85,7 +84,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  exportAuditLogsToFile(filter: AuditLogFilter): AuditLogFileExport!
+  exportAuditLogsToFile(filter: AuditLogFilter!): AuditLogFileExport!
 }
 
 type ModifyAuditLogError implements Error {
