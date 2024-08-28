@@ -1,6 +1,6 @@
 import { Injectable, Scope } from 'graphql-modules';
-import { AuditLogEventAction, AuditLogFilter } from '../../../__generated__/types';
 import { ClickHouse, sql } from '../../operations/providers/clickhouse-client';
+import { AuditLog } from '../../../__generated__/types';
 
 /**
  * Responsible for audit logs.
@@ -12,7 +12,7 @@ import { ClickHouse, sql } from '../../operations/providers/clickhouse-client';
   global: true,
 })
 export class AuditLogManager {
-  constructor(private clickHouse: ClickHouse) {}
+  constructor(private clickHouse: ClickHouse) { }
 
   async createLogAuditEvent(event: AuditLogEvent) {
     const { user, organizationId, projectId, targetId, schemaVersionId, eventAction, details } =
@@ -44,6 +44,7 @@ export class AuditLogManager {
     });
     return result;
   }
+
   async getAuditLogs(after: string, first: string) {
     const query = sql`
             SELECT *
@@ -58,11 +59,23 @@ export class AuditLogManager {
       queryId: 'get-audit-logs',
       timeout: 5000,
     });
-
     if (!result) {
       throw new Error('Audit logs not found');
     }
+    return result;
+  }
 
+  async getAuditLogsCount() {
+    const query = sql`
+            SELECT COUNT(*)
+            FROM audit_log
+        `;
+
+    const result = await this.clickHouse.query({
+      query,
+      queryId: 'get-audit-logs-count',
+      timeout: 5000,
+    });
     return result;
   }
 }
@@ -76,6 +89,6 @@ interface AuditLogEvent {
   projectId?: string | null;
   targetId?: string | null;
   schemaVersionId?: string | null;
-  eventAction: AuditLogEventAction;
+  eventAction: AuditLog
   details: Record<string, any>;
 }

@@ -4,41 +4,200 @@ export const typeDefs = gql`
   scalar Date
   scalar JSON
 
-  enum AuditLogEventAction {
-    USER_INVITED
-    USER_JOINED
-    USER_REMOVED
-    EXPIRED_INVITE_HIT
-    ORGANIZATION_SETTINGS_UPDATED
-    ORGANIZATION_TRANSFERRED
-    PROJECT_CREATED
-    PROJECT_SETTINGS_UPDATED
-    PROJECT_DELETED
-    TARGET_CREATED
-    TARGET_SETTINGS_UPDATED
-    TARGET_DELETED
-    SCHEMA_POLICY_SETTINGS_UPDATED
-    SCHEMA_CHECKED
-    SCHEMA_PUBLISH
-    SCHEMA_DELETED
-    ROLE_CREATED
-    ROLE_ASSIGNED
-    ROLE_DELETED
-  }
-
-  type AuditLog {
+  interface AuditLog {
     id: ID!
     eventTime: Date!
     userId: String
     userEmail: String
     organizationId: String!
-    projectId: String
-    projectName: String
-    targetId: String
-    targetName: String
-    schemaVersionId: String
-    eventAction: AuditLogEventAction!
-    eventDetails: JSON
+  }
+
+  type UserInvitedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String
+    userEmail: String
+    organizationId: String!
+    inviteeId: String!
+    inviteeEmail: String!
+  }
+
+  type UserJoinedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+  }
+
+  type UserRemovedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    removedUserId: String!
+    removedUserEmail: String!
+  }
+
+  type OrganizationSettingsUpdatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String
+    userEmail: String
+    organizationId: String!
+    updatedFields: JSON!
+  }
+
+  type OrganizationTransferredAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    newOwnerId: String!
+    newOwnerEmail: String!
+  }
+
+  type ProjectCreatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    projectName: String!
+  }
+
+  type ProjectSettingsUpdatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    updatedFields: JSON!
+  }
+
+  type ProjectDeletedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    projectName: String!
+  }
+
+  type TargetCreatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    targetId: String!
+    targetName: String!
+  }
+
+  type TargetSettingsUpdatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    targetId: String!
+    updatedFields: JSON!
+  }
+
+  type TargetDeletedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    targetId: String!
+    targetName: String!
+  }
+
+  type SchemaPolicySettingsUpdatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    updatedFields: JSON!
+  }
+
+  type SchemaCheckedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    schemaId: String!
+    schemaName: String!
+  }
+
+  type SchemaPublishAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    schemaId: String!
+    schemaName: String!
+  }
+
+  type SchemaDeletedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    schemaId: String!
+    schemaName: String!
+  }
+
+  type RoleCreatedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    roleId: String!
+    roleName: String!
+  }
+
+  type RoleAssignedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    roleId: String!
+    roleName: String!
+    userIdAssigned: String!
+    userEmailAssigned: String!
+  }
+
+  type RoleDeletedAuditLog implements AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String!
+    userEmail: String!
+    organizationId: String!
+    projectId: String!
+    roleId: String!
+    roleName: String!
   }
 
   type AuditLogEdge {
@@ -75,7 +234,7 @@ export const typeDefs = gql`
     userEmail: String
     projectId: String
     targetId: String
-    eventAction: AuditLogEventAction
+    eventType: String # Filter by __typename if needed
   }
 
   extend type Query {
