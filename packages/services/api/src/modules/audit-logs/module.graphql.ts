@@ -1,10 +1,10 @@
 import { gql } from 'graphql-modules';
 
 export const typeDefs = gql`
-scalar Date
-scalar JSON
+  scalar Date
+  scalar JSON
 
-enum AuditLogEventAction {
+  enum AuditLogEventAction {
     USER_INVITED
     USER_JOINED
     USER_REMOVED
@@ -24,70 +24,70 @@ enum AuditLogEventAction {
     ROLE_CREATED
     ROLE_ASSIGNED
     ROLE_DELETED
-}
+  }
 
-type AuditLog {
-  id: ID!
-  eventTime: Date!
-  userId: String
-  userEmail: String
-  organizationId: String!
-  projectId: String
-  projectName: String
-  targetId: String
-  targetName: String
-  schemaVersionId: String
-  eventAction: AuditLogEventAction!
-  eventDetails: JSON
-}
+  type AuditLog {
+    id: ID!
+    eventTime: Date!
+    userId: String
+    userEmail: String
+    organizationId: String!
+    projectId: String
+    projectName: String
+    targetId: String
+    targetName: String
+    schemaVersionId: String
+    eventAction: AuditLogEventAction!
+    eventDetails: JSON
+  }
 
-type AuditLogEdge {
-  node: AuditLog!
-  cursor: String!
-}
+  type AuditLogEdge {
+    node: AuditLog!
+    cursor: String!
+  }
 
-type AuditLogConnection {
-  edges: [AuditLogEdge!]!
-  pageInfo: PageInfo!
-}
+  type AuditLogConnection {
+    edges: [AuditLogEdge!]!
+    pageInfo: PageInfo!
+  }
 
-type AuditLogFileExport {
-  id: ID!
-  url: String!
-  validUntil: Date!
-  createdAt: Date!
-}
+  type AuditLogFileExport {
+    id: ID!
+    url: String!
+    validUntil: Date!
+    createdAt: Date!
+  }
 
-type ExportResultEdge {
-  node: AuditLogFileExport!
-  cursor: String!
-}
+  type ExportResultEdge {
+    node: AuditLogFileExport!
+    cursor: String!
+  }
 
-type ExportResultConnection {
-  edges: [ExportResultEdge!]!
-  pageInfo: PageInfo!
-}
+  type ExportResultConnection {
+    edges: [ExportResultEdge!]!
+    pageInfo: PageInfo!
+  }
 
-input AuditLogFilter {
-  startDate: Date
-  endDate: Date
-  userId: String
-  userEmail: String
-  projectId: String
-  targetId: String
-  eventAction: AuditLogEventAction
-}
+  input AuditLogFilter {
+    startDate: Date
+    endDate: Date
+    userId: String
+    userEmail: String
+    projectId: String
+    targetId: String
+    eventAction: AuditLogEventAction
+  }
 
-extend type Query {
-  auditLogs(filter: AuditLogFilter, first: Int = 100, after: String = null): AuditLogConnection!
-  auditLogExports(first: Int = 100, after: String = null): ExportResultConnection!
-}
+  extend type Query {
+    auditLogs(filter: AuditLogFilter, first: Int = 100, after: String = null): AuditLogConnection!
+    auditLogExports(first: Int = 100, after: String = null): ExportResultConnection!
+  }
 
-extend type Mutation {
-  exportAuditLogsToFile(filter: AuditLogFilter!): AuditLogFileExport!
-}
+  extend type Mutation {
+    exportAuditLogsToFile(filter: AuditLogFilter!): AuditLogFileExport!
+  }
 
-type ModifyAuditLogError implements Error {
-  message: String!
-}
+  type ModifyAuditLogError implements Error {
+    message: String!
+  }
 `;

@@ -4,6 +4,7 @@ import { adminModule } from './modules/admin';
 import { alertsModule } from './modules/alerts';
 import { WEBHOOKS_CONFIG, WebhooksConfig } from './modules/alerts/providers/tokens';
 import { appDeploymentsModule } from './modules/app-deployments';
+import { auditLogsModule } from './modules/audit-logs';
 import { authModule } from './modules/auth';
 import { billingModule } from './modules/billing';
 import { BILLING_CONFIG, BillingConfig } from './modules/billing/providers/tokens';
@@ -67,7 +68,6 @@ import {
   USAGE_ESTIMATION_SERVICE_CONFIG,
   UsageEstimationServiceConfig,
 } from './modules/usage-estimation/providers/tokens';
-import { auditLogsModule } from './modules/audit-logs';
 
 const modules = [
   sharedModule,
