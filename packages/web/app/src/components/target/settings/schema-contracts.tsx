@@ -113,21 +113,21 @@ function DisableContractDialog(props: { contractId: string; onClose: () => void 
             </p>
           </DialogDescription>
         </DialogHeader>
-        {state?.data?.disableContract?.ok && (
+        {state.data?.disableContract.ok && (
           <div className="py-2">The Contract was successfully disabled.</div>
         )}
-        {state?.data?.disableContract?.error && (
+        {state.data?.disableContract.error && (
           <div className="py-2">{state.data.disableContract.error.message}</div>
         )}
         <DialogFooter>
           <Button onClick={props.onClose}>
-            {state?.data?.disableContract?.ok ? 'Ok' : 'Close'}
+            {state.data?.disableContract.ok ? 'Ok' : 'Close'}
           </Button>
-          {!state?.data?.disableContract?.ok && (
+          {!state.data?.disableContract.ok && (
             <Button
               type="submit"
               variant="destructive"
-              disabled={state.fetching || !!state.data?.disableContract?.ok}
+              disabled={state.fetching || !!state.data?.disableContract.ok}
               onClick={submit}
             >
               Disable Contract
@@ -448,7 +448,7 @@ function CreateContractDialogContent(props: {
                 autoComplete="off"
               />
               <span className="text-sm text-red-500 after:invisible after:content-['.']">
-                {mutation.data?.createContract.error?.details?.contractName ??
+                {mutation.data?.createContract.error?.details.contractName ??
                   form.errors.contractName}
               </span>
             </div>
@@ -539,7 +539,7 @@ function CreateContractDialogContent(props: {
                     </PopoverContent>
                   </Popover>
                   <div className="mt-2 text-sm text-red-500 after:invisible after:content-['.']">
-                    {mutation.data?.createContract.error?.details?.includeTags ??
+                    {mutation.data?.createContract.error?.details.includeTags ??
                       form.errors.includeTags}
                   </div>
                 </div>
@@ -652,7 +652,7 @@ function CreateContractDialogContent(props: {
                     </PopoverContent>
                   </Popover>
                   <div className="mt-2 text-sm text-red-500 after:invisible after:content-['.']">
-                    {mutation.data?.createContract.error?.details?.excludeTags ??
+                    {mutation.data?.createContract.error?.details.excludeTags ??
                       form.errors.excludeTags}
                   </div>
                 </div>
