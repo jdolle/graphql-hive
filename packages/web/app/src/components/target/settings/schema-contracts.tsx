@@ -120,9 +120,7 @@ function DisableContractDialog(props: { contractId: string; onClose: () => void 
           <div className="py-2">{state.data.disableContract.error.message}</div>
         )}
         <DialogFooter>
-          <Button onClick={props.onClose}>
-            {state.data?.disableContract.ok ? 'Ok' : 'Close'}
-          </Button>
+          <Button onClick={props.onClose}>{state.data?.disableContract.ok ? 'Ok' : 'Close'}</Button>
           {!state.data?.disableContract.ok && (
             <Button
               type="submit"

@@ -308,8 +308,7 @@ function TargetAppVersionContent(props: {
                 variant="outline"
                 className="ml-auto mr-0 flex"
                 disabled={
-                  !data.data.target.appDeployment.documents.pageInfo.hasNextPage ||
-                  isLoadingMore
+                  !data.data.target.appDeployment.documents.pageInfo.hasNextPage || isLoadingMore
                 }
                 onClick={() => {
                   if (
