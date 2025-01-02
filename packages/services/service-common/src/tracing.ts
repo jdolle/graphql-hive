@@ -252,7 +252,7 @@ function extractParts(sqlStatement: string): {
 } {
   const regex = /\/\*(.*?)\*\//;
   const match = sqlStatement.match(regex);
-  const name = match ? match[1].trim() : undefined;
+  const name = match ? match[1]?.trim() : undefined;
   const sql = sqlStatement.replace(regex, '').trim();
 
   return { sql, name };
